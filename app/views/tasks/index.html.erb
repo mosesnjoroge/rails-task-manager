@@ -1,13 +1,18 @@
-<h1>Tasks</h1>
 <div>
-<% @tasks.each do |item|  %>
-<% if item.completed == false %>
-<input type="checkbox" checked>  <%= link_to item.title, task_path(item.id) %>
-</input>
-<% else %>
- <input type="checkbox"> <%= link_to item.title, task_path(item.id) %>
- </input>
- <% end %>
-<% end %>
+  <h1>Tasks</h1>
+</div>
+<div>
+  <% @tasks.each do |item|  %>
+    <div>
+      <% if item.completed == false %>
+        <input type="checkbox" checked><%= link_to raw('<i class="fa fa-trash" aria-hidden="true"></i>', @edit_task.destroy)%>
+          <%= link_to item.title, task_path(item.id) %>
+        </input>
+      <% else %>
+        <input type="checkbox"> <%= link_to item.title, task_path(item.id) %>
+        </input>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 <%= link_to "Click here to add a new task", new_path %>

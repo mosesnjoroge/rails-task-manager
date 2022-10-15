@@ -28,6 +28,12 @@ class TasksController < ApplicationController
     params[:task][:completed] == '1' ? @edit_task.update(completed: true) : @edit_task.update(completed: false)
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @edit_task.destroy
+    redirect_to tasks_path
+  end
+
   def task_params
     params.require(:task).permit(:title, :details)
   end
